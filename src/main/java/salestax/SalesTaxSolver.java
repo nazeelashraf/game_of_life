@@ -35,11 +35,7 @@ public class SalesTaxSolver implements ISolver {
         BufferedReader bufferedReader = TestCaseLoader.getInputBufferForFile(fileName);
         String line;
 
-        List<String> outputList = null;
-
-        if(asList) {
-            outputList = new ArrayList<>();
-        }
+        List<String> outputList = asList ? new ArrayList<>() : null;
 
         BigDecimal totalTax = SalesTaxConstants.ZERO;
         BigDecimal totalAmount = SalesTaxConstants.ZERO;
