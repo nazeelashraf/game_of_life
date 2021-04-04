@@ -24,13 +24,13 @@ public class DriverApp {
                     while((choice = reader.readLine()) != null && !choice.equals("3")) {
                         try {
                             if("1".equals(choice)) {
-                                System.out.println("Sales Tax calculator\nEnter input test file: ");
+                                System.out.println("Sales Tax calculator\nEnter input test file (full path): ");
                                 String fileName = reader.readLine();
                                 System.out.println("Output: ");
                                 driver.solveSalesTaxProblem(fileName);
                                 printMenu(true);
                             } else if ("2".equals(choice)) {
-                                System.out.println("Game of Life tick generator\nEnter input test file: ");
+                                System.out.println("Game of Life tick generator\nEnter input test file (full path): ");
                                 String fileName = reader.readLine();
                                 System.out.println("Output: ");
                                 driver.solveGameOfLife(fileName);
@@ -54,7 +54,7 @@ public class DriverApp {
                         System.out.println("Output: ");
                         driver.solveGameOfLife(args[1]);
                     } else {
-                        System.out.println("Invalid arg: '"+args[0]+"'. Please try again.");
+                        System.out.println("Invalid arg: '"+args[0]+"'. Please use 1 for Sales Tax Calculator and 2 for Game of Life.");
                     }
                 } catch (Exception e) {
                     System.out.println("An error has occurred.");
@@ -72,21 +72,11 @@ public class DriverApp {
 
     private void solveSalesTaxProblem(String fileName) throws Exception {
         SalesTaxSolver solver = new SalesTaxSolver();
-
-//        solver.solve(ETestCaseFile.salesTaxInput1);
-//        System.out.println("---------------");
-//        solver.solve(ETestCaseFile.salesTaxInput2);
-//        System.out.println("---------------");
-//        solver.solve(ETestCaseFile.salesTaxInput3);
-
         solver.solve(fileName);
     }
 
     private void solveGameOfLife(String fileName) throws Exception {
         GameOfLifeSolver solver = new GameOfLifeSolver();
-//        solver.solve(ETestCaseFile.gameOfLifeInput1);
-//        System.out.println("---------------");
-//        solver.solve(ETestCaseFile.gameOfLifeInput2);
         solver.solve(fileName);
     }
 
