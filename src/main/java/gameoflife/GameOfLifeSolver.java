@@ -1,60 +1,49 @@
 package gameoflife;
 
+import gameoflife.pojo.Coordinate;
+import gameoflife.pojo.GameOfLife;
+import gameoflife.pojo.Grid;
+import gameoflife.pojo.IGrid;
 import solver.ISolver;
-import util.ETestCaseFile;
-import util.TestCaseLoader;
 
-import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameOfLifeSolver implements ISolver {
-    @Override
-    public void solve(ETestCaseFile file) throws Exception {
-        solveInternal(file.toString(), false);
-    }
 
     @Override
-    public void solve(String file) throws Exception {
-        solveInternal(file, false);
+    public List<Coordinate> solve(List<Coordinate> coordinates) throws Exception {
+        return this.solveInternal(coordinates);
     }
 
-    @Override
-    public List<String> solveAsLine(ETestCaseFile file) throws Exception {
-        return solveInternal(file.toString(), true);
-    }
+    protected List<Coordinate> solveInternal(List<Coordinate> coordinates) throws Exception {
 
-    @Override
-    public List<String> solveAsLine(String file) throws Exception {
-        return solveInternal(file, true);
-    }
-
-    private List<String> solveInternal(String fileName, Boolean asList) throws Exception {
-        BufferedReader reader = TestCaseLoader.getInputBufferForFile(fileName);
-        String line;
         int m = 0, n = 0, x, y;
 
-        List<String> coordinates = new ArrayList<>();
+        for(Coordinate coordinate: coordinates) {
+            x = coordinate.getX();
+            y = coordinate.getY();
+            m = m < x ? x : m;
+            n = n < y ? y : n;
 
-        while((line = reader.readLine()) != null) {
-            coordinates.add(line);
-            String[] coord = line.split(GameOfLifeConstants.SPLIT_PARAM);
-            x = Integer.parseInt(coord[0]);
-            y = Integer.parseInt(coord[1]);
-
-            if(m < x) m = x;
-            if(n < y) n = y;
+            coordinate.add(1);
         }
 
-        List<String> outputList = GameOfLifeHelper.solveGameOfLife(coordinates, m + 1, n + 1);
+        m += 1;
+        n += 1;
 
-        if(!asList) {
-            for(String outputLine: outputList) {
-                System.out.println(outputLine);
-            }
-            return null;
+        IGrid<Boolean> grid = new Grid<Boolean>(m + 2, n + 2, Boolean.FALSE);
+        grid.setValueAtCoordinates(coordinates, Boolean.TRUE);
+
+        GameOfLife gameOfLife = new GameOfLife(grid);
+        IGrid<Boolean> newGrid = gameOfLife.getNextGenerationTick();
+
+        List<Coordinate> newCoordinates = newGrid.getCoordinatesWithValue(Boolean.TRUE);
+
+        for(Coordinate coordinate: newCoordinates) {
+            coordinate.add(-1);
         }
 
-        return outputList;
+        return newCoordinates;
     }
+
 }

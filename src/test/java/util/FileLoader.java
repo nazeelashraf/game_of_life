@@ -2,7 +2,7 @@ package util;
 
 import java.io.*;
 
-public class TestCaseLoader {
+public class FileLoader {
 
     public static final BufferedReader getInputBufferForFile(String fileName) throws FileNotFoundException {
         BufferedReader bufferedReader = null;
@@ -15,7 +15,7 @@ public class TestCaseLoader {
 
             try {
                 bufferedReader = new BufferedReader(new InputStreamReader(
-                        TestCaseLoader.class.getClassLoader().getResourceAsStream(fileName))
+                        FileLoader.class.getClassLoader().getResourceAsStream(fileName))
                 );
 
                 if(bufferedReader == null) {

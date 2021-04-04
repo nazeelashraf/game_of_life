@@ -1,14 +1,9 @@
 package solver;
 
-import util.ETestCaseFile;
+import gameoflife.pojo.Coordinate;
 
 import java.util.List;
 
 public interface ISolver {
-    void solve(ETestCaseFile file) throws Exception;
-    void solve(String file) throws Exception;
-
-    List<String> solveAsLine(ETestCaseFile file) throws Exception;
-    List<String> solveAsLine(String file) throws Exception;
-
+    List<Coordinate> solve(List<Coordinate> coordinates) throws Exception;
 }

@@ -1,31 +1,24 @@
 package gameoflife;
 
+import gameoflife.pojo.Coordinate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import util.ETestCaseFile;
-import util.TestCaseLoader;
-
-import java.io.BufferedReader;
 import java.util.List;
 
 public class GameOfLifeTester {
-    private static final GameOfLifeSolver gameOfLifeSolver = new GameOfLifeSolver();
+    private static final GameOfLifeTestSolver GAME_OF_LIFE_TEST_SOLVER = new GameOfLifeTestSolver();
+    private static final GameOfLifeTestHelper GAME_OF_LIFE_TEST_HELPER = new GameOfLifeTestHelper();
 
     @Test
     public void testInput1() {
         try {
-            List<String> outputList = gameOfLifeSolver.solveAsLine(ETestCaseFile.gameOfLifeInput1);
+            List<Coordinate> actualOutputList = GAME_OF_LIFE_TEST_SOLVER.solveAsList(
+                    GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeInput1));
 
-            BufferedReader reader = TestCaseLoader.getInputBufferForFile(ETestCaseFile.gameOfLifeOutput1.toString());
+            List<Coordinate> expectedOutputList = GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeOutput1);
 
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append("\\n");
-            }
-
-            Assertions.assertEquals(stringBuilder.toString(), String.join("\\n", outputList) + "\\n");
+            Assertions.assertEquals(expectedOutputList, actualOutputList);
 
         } catch (Exception e) {
             Assertions.fail(e);
@@ -35,18 +28,12 @@ public class GameOfLifeTester {
     @Test
     public void testInput2() {
         try {
-            List<String> outputList = gameOfLifeSolver.solveAsLine(ETestCaseFile.gameOfLifeInput2);
+            List<Coordinate> actualOutputList = GAME_OF_LIFE_TEST_SOLVER.solveAsList(
+                    GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeInput2));
 
-            BufferedReader reader = TestCaseLoader.getInputBufferForFile(ETestCaseFile.gameOfLifeOutput2.toString());
+            List<Coordinate> expectedOutputList = GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeOutput2);
 
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append("\\n");
-            }
-
-            Assertions.assertEquals(stringBuilder.toString(), String.join("\\n", outputList) + "\\n");
+            Assertions.assertEquals(expectedOutputList, actualOutputList);
 
         } catch (Exception e) {
             Assertions.fail(e);
@@ -56,18 +43,12 @@ public class GameOfLifeTester {
     @Test
     public void testInput3() {
         try {
-            List<String> outputList = gameOfLifeSolver.solveAsLine(ETestCaseFile.gameOfLifeInput3);
+            List<Coordinate> actualOutputList = GAME_OF_LIFE_TEST_SOLVER.solveAsList(
+                    GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeInput3));
 
-            BufferedReader reader = TestCaseLoader.getInputBufferForFile(ETestCaseFile.gameOfLifeOutput3.toString());
+            List<Coordinate> expectedOutputList = GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeOutput3);
 
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append("\\n");
-            }
-
-            Assertions.assertEquals(stringBuilder.toString(), String.join("\\n", outputList) + "\\n");
+            Assertions.assertEquals(expectedOutputList, actualOutputList);
 
         } catch (Exception e) {
             Assertions.fail(e);
@@ -77,18 +58,12 @@ public class GameOfLifeTester {
     @Test
     public void testInput4() {
         try {
-            List<String> outputList = gameOfLifeSolver.solveAsLine(ETestCaseFile.gameOfLifeInput3);
+            List<Coordinate> actualOutputList = GAME_OF_LIFE_TEST_SOLVER.solveAsList(
+                    GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeInput4));
 
-            BufferedReader reader = TestCaseLoader.getInputBufferForFile(ETestCaseFile.gameOfLifeOutput3.toString());
+            List<Coordinate> expectedOutputList = GAME_OF_LIFE_TEST_HELPER.getCoordinateFromInputStream(ETestCaseFile.gameOfLifeOutput4);
 
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append("\\n");
-            }
-
-            Assertions.assertEquals(stringBuilder.toString(), String.join("\\n", outputList) + "\\n");
+            Assertions.assertEquals(expectedOutputList, actualOutputList);
 
         } catch (Exception e) {
             Assertions.fail(e);
