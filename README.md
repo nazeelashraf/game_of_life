@@ -1,5 +1,5 @@
-# mkj_challenge
-Challenge problems - solved in Java.
+# Game of Life
+Game of Life - solved in Java.
 
 ## How to run:
 1. Build step: 
